@@ -3,6 +3,7 @@
 //==========================================================================
 var express = require('express');
 var bodyParser = require('body-parser');
+var functions = require('./functions');
 //==========================================================================
 // Express / Bodyparser
 //==========================================================================
@@ -91,6 +92,18 @@ app.use(function(req, res, next){
     }
     else{
         next();
+    }
+});
+//==========================================================================
+// Does the specific method exist?
+//==========================================================================
+app.use(function(req, res, next){
+    if(req.body.method in functions){
+        console.log('Method in functions');
+        next();
+    }
+    else{
+        console.log('Method NOT! in functions');
     }
 });
 //==========================================================================
