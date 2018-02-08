@@ -25,9 +25,9 @@ npm start
 ## About
 ### Author
 
-* Picavi GmbH
+* Picavi GmbH | [GitHub](https://github.com/picavi) | [Website](https://picavi.com)
 
--- Sebastian Breuer | [theBreuer](https://github.com/thebreuer)
+* Sebastian Breuer | [GitHub](https://github.com/thebreuer)
 
 ### Built With
 
