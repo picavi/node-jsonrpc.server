@@ -19,5 +19,10 @@
   "bugs": {
     "url": "https://github.com/picavi/node-jsonrpc.server/issues"
   },
-  "homepage": "https://github.com/picavi/node-jsonrpc.server#readme"
+  "homepage": "https://github.com/picavi/node-jsonrpc.server#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "jayson": "^2.0.5"
+  }
 }
