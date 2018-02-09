@@ -57,7 +57,7 @@ app.use(function(req, res, next){
             var err = {
                 "code": -32600,
                 "message": "Invalid Request",
-                "data": "Json RPC version is undefined.",
+                "data": "JSON-RPC version is undefined.",
                 "id": null
               };    
         }
@@ -100,10 +100,19 @@ app.use(function(req, res, next){
 app.use(function(req, res, next){
     if(req.body.method in functions){
         console.log('Method in functions');
+        console.log(functions[req.body.method]());
         next();
+        
     }
     else{
-        console.log('Method NOT! in functions');
+        var err = {
+            "code": -32601,
+            "message": "Method not found",
+            "data": "The method does not exist / is not available",
+            "id": null
+          };
+          console.info("["+new Date+ "] "+"Response  -- " +JSON.stringify(err));
+          res.end(JSON.stringify(err));
     }
 });
 //==========================================================================
