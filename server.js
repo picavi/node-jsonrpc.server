@@ -3,7 +3,8 @@
 //==========================================================================
 var express = require('express');
 var bodyParser = require('body-parser');
-var functions = require('./functions');
+var methods = require('./functions');
+var configs = require('./configs');
 //==========================================================================
 // Express / Bodyparser
 //==========================================================================
@@ -32,8 +33,8 @@ app.use(function(err, req, res, next) {
 //==========================================================================
 app.use(function(req, res, next) {
     
-    if(req.url !== "/api"){
-        res.end();
+    if(req.url !== configs.ENDPOINT){
+        res.end("Cannot "+req.method +" "+req.url);
     }else{
         next();
     }
@@ -98,9 +99,9 @@ app.use(function(req, res, next){
 // Does the specific method exist?
 //==========================================================================
 app.use(function(req, res, next){
-    if(req.body.method in functions){
-        console.log('Method in functions');
-        console.log(functions[req.body.method]());
+    if(req.body.method in methods){
+        console.log('Method found');
+        console.log(methods[req.body.method]());
         next();
         
     }
@@ -118,13 +119,13 @@ app.use(function(req, res, next){
 //==========================================================================
 // Define API route
 //==========================================================================
-app.post('/api', function(req, res){
+app.post(configs.ENDPOINT, function(req, res){
     console.info("["+new Date+ "] "+"Response  -- " +JSON.stringify(req.body));
     res.end(JSON.stringify(req.body));
 });
 //==========================================================================
 // Start listening
 //==========================================================================
-app.listen(8080, function(){
-    console.info("["+new Date+ "] " +"Started server at PORT 8080");
+app.listen(configs.PORT, function(){
+    console.info("["+new Date+ "] " +"Started server at PORT "+configs.PORT);
 });
